@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:iconly/iconly.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:sqf_lite/Proceso/peticiones.dart';
 import 'package:sqf_lite/UI/listado.dart';
@@ -12,7 +14,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const FlexScheme usedFlexScheme = FlexScheme.aquaBlue;
+    const FlexScheme usedFlexScheme = FlexScheme.blumineBlue;
 
     return GetMaterialApp(
       title: 'GPS Tracking',
@@ -52,7 +54,11 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(
+          widget.title,
+          style:
+              GoogleFonts.openSans(fontSize: 24, fontWeight: FontWeight.w700),
+        ),
         actions: [
           IconButton(
               onPressed: () {
@@ -63,16 +69,24 @@ class _MyHomePageState extends State<MyHomePage> {
                         type: AlertType.warning,
                         buttons: [
                           DialogButton(
-                              color: Colors.green[700]!,
-                              child: Text("Si"),
+                              color: Color.fromARGB(255, 0, 155, 126),
+                              child: Text("Si",
+                                  style: GoogleFonts.openSans(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white)),
                               onPressed: () {
                                 PeticionesDB.eliminarTodas();
                                 Control.cargarDB();
                                 Navigator.pop(context);
                               }),
                           DialogButton(
-                              color: Colors.red[800]!,
-                              child: Text("No"),
+                              color: Color.fromARGB(255, 176, 0, 32),
+                              child: Text("No",
+                                  style: GoogleFonts.openSans(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white)),
                               onPressed: () {
                                 Navigator.pop(context);
                               }),
@@ -80,10 +94,18 @@ class _MyHomePageState extends State<MyHomePage> {
                         context: context)
                     .show();
               },
-              icon: Icon(Icons.cancel_rounded))
+              icon: Icon(
+                IconlyBold.close_square,
+              ))
         ],
       ),
-      body: listar(),
+      body: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [Colors.white, Color.fromARGB(255, 143, 186, 201)])),
+          child: listar()),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           obtenerUbicacion();
@@ -94,8 +116,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   type: AlertType.warning,
                   buttons: [
                     DialogButton(
-                        color: Colors.green[700]!,
-                        child: Text("Si"),
+                        color: Color.fromARGB(255, 0, 155, 126),
+                        child: Text("Si",
+                            style: GoogleFonts.openSans(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white)),
                         onPressed: () {
                           PeticionesDB.guardarUbicacion(
                               Control.unaUbicacion, DateTime.now().toString());
@@ -103,8 +129,12 @@ class _MyHomePageState extends State<MyHomePage> {
                           Navigator.pop(context);
                         }),
                     DialogButton(
-                        color: Colors.red[800]!,
-                        child: Text("No"),
+                        color: Color.fromARGB(255, 176, 0, 32),
+                        child: Text("No",
+                            style: GoogleFonts.openSans(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.white)),
                         onPressed: () {
                           Navigator.pop(context);
                         }),

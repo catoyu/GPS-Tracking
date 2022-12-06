@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:sqf_lite/Controladores/controlador.dart';
 import 'package:sqf_lite/Proceso/peticiones.dart';
+import 'package:iconly/iconly.dart';
 
 class listar extends StatefulWidget {
   const listar({super.key});
@@ -31,44 +33,74 @@ class _listarState extends State<listar> {
                     itemCount: Control.listaUbicaciones!.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Card(
-                        child: ListTile(
-                            leading: Icon(Icons.my_location_rounded),
-                            trailing: IconButton(
-                              onPressed: () {
-                                Alert(
-                                        title:
-                                            "¿Estás seguro de eliminar está ubicación?",
-                                        desc:
-                                            "Una vez eliminada no podrás restaurarla.",
-                                        type: AlertType.warning,
-                                        buttons: [
-                                          DialogButton(
-                                              color: Colors.green[700]!,
-                                              child: Text("Si"),
-                                              onPressed: () {
-                                                PeticionesDB.eliminarUbicacion(
-                                                    Control.listaUbicaciones![
-                                                        index]["id"]);
-                                                Control
-                                                    .cargarDB(); //Actualizar tabla
-                                                Navigator.pop(context);
-                                              }),
-                                          DialogButton(
-                                              color: Colors.red[800]!,
-                                              child: Text("No"),
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                              }),
-                                        ],
-                                        context: context)
-                                    .show();
-                              },
-                              icon: Icon(Icons.delete_forever_rounded),
-                            ),
-                            title: Text(Control.listaUbicaciones![index]
-                                ["coordenadas"]),
-                            subtitle: Text(
-                                Control.listaUbicaciones![index]["fecha"])),
+                        elevation: 6,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ListTile(
+                              leading: Icon(
+                                IconlyBold.location,
+                                color: Color.fromARGB(255, 254, 183, 22),
+                              ),
+                              trailing: IconButton(
+                                onPressed: () {
+                                  Alert(
+                                          title:
+                                              "¿Estás seguro de eliminar está ubicación?",
+                                          desc:
+                                              "Una vez eliminada no podrás restaurarla.",
+                                          type: AlertType.warning,
+                                          buttons: [
+                                            DialogButton(
+                                                color: Color.fromARGB(
+                                                    255, 0, 155, 126),
+                                                child: Text(
+                                                  "Si",
+                                                  style: GoogleFonts.openSans(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color: Colors.white),
+                                                ),
+                                                onPressed: () {
+                                                  PeticionesDB.eliminarUbicacion(
+                                                      Control.listaUbicaciones![
+                                                          index]["id"]);
+                                                  Control
+                                                      .cargarDB(); //Actualizar tabla
+                                                  Navigator.pop(context);
+                                                }),
+                                            DialogButton(
+                                                color: Color.fromARGB(
+                                                    255, 176, 0, 32),
+                                                child: Text("No",
+                                                    style: GoogleFonts.openSans(
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color: Colors.white)),
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                }),
+                                          ],
+                                          context: context)
+                                      .show();
+                                },
+                                icon: Icon(
+                                  IconlyBold.delete,
+                                  color: Color.fromARGB(255, 176, 0, 32),
+                                ),
+                              ),
+                              title: Text(
+                                Control.listaUbicaciones![index]["coordenadas"],
+                                style: GoogleFonts.openSans(
+                                    fontSize: 16, fontWeight: FontWeight.w600),
+                              ),
+                              subtitle: Text(
+                                Control.listaUbicaciones![index]["fecha"],
+                                style: GoogleFonts.openSans(
+                                    fontSize: 12, color: Colors.grey),
+                              )),
+                        ),
                       );
                     },
                   ),
