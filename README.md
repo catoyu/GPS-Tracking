@@ -1,4 +1,14 @@
-# sqf_lite
+## Reto 04: GPS Tracking
+
+Proyecto desarrollado por: Yuly Andrea Castro Torres, Alexander Anillo Trocha, Daniel Esteban Agudelo Duque, Heyder Barbosa Orrego y Lina Rocio Cardenas Fernandez.
+
+Equipo 3 - NRC 2289
+
+Misión MinTic 2022
+
+## Demo:
+
+![Demo_GPS](https://user-images.githubusercontent.com/110750570/206055227-7d4c7030-c61c-49b8-a075-af67890c9703.gif)
 
 A new Flutter project.
 
